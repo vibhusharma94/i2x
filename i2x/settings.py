@@ -28,7 +28,7 @@ PROJECT_DIR = os.path.dirname(PROJECT_APP_DIR)
 SECRET_KEY = 'ok+*shj!gm9h-*8=2n27o-z-8^l$&np5m-okjh!f%h$mf*3mjr'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 
 # Application definition
@@ -57,8 +57,7 @@ MIDDLEWARE_CLASSES = (
 )
 
 
-PRODUCTION = False
-if PRODUCTION:
+if not DEBUG:
     DATABASES['default'] = dj_database_url.config()
 
 if 'test' in sys.argv:
@@ -135,9 +134,6 @@ USE_L10N = True
 USE_TZ = True
 
 
-
-# NOTE: This is overridden on production & staging environment to redirect static file to AWS S3. For development,
-# make sure this is not overridden on settings_local.py
 STATIC_URL = '/static/'
 
 # Additional locations of static files
